@@ -222,9 +222,6 @@
       border: 2px solid var(--border);
       border-radius: var(--radius);
       padding: 1.75rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      position: relative;
     }
     .service-card:hover { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(42,92,222,0.06); }
     .service-card.selected { border-color: var(--accent); background: rgba(42,92,222,0.04); }
@@ -406,37 +403,37 @@
   <h2>Services designed for small teams</h2>
   <p class="section-sub">Select the services that interest you — we'll cover the details when we connect.</p>
   <div class="services-grid">
-    <div class="service-card" onclick="toggleService(this, 'workflow-automation')">
+    <div class="service-card">
       <div class="service-icon">⚙️</div>
       <h3>Workflow Automation</h3>
       <p>Automate approval chains, reporting, email routing, and repetitive tasks inside Google Workspace or Microsoft 365.</p>
       <div class="service-tier tier-quick">Quick Win</div>
     </div>
-    <div class="service-card" onclick="toggleService(this, 'ai-tools')">
+    <div class="service-card">
       <div class="service-icon">🧠</div>
       <h3>Custom Tools</h3>
       <p>Custom spreadsheet tools, document generators, and smart templates.</p>
       <div class="service-tier tier-quick">Quick Win</div>
     </div>
-    <div class="service-card" onclick="toggleService(this, 'chatbot-kb')">
+    <div class="service-card">
       <div class="service-icon">💬</div>
       <h3>Internal Chatbot / Knowledge Base</h3>
       <p>Build a chatbot trained on your documents, SOPs, and FAQs so your team gets instant answers.</p>
       <div class="service-tier tier-build">Build-Out</div>
     </div>
-    <div class="service-card" onclick="toggleService(this, 'crm-integration')">
+    <div class="service-card">
       <div class="service-icon">🔗</div>
       <h3>CRM & App Integrations</h3>
       <p>Connect your CRM, project management tools, and Google / Microsoft apps so data flows automatically.</p>
       <div class="service-tier tier-build">Build-Out</div>
     </div>
-    <div class="service-card" onclick="toggleService(this, 'doc-generation')">
+    <div class="service-card">
       <div class="service-icon">📄</div>
       <h3>Document Generation</h3>
       <p>Auto-generate proposals, contracts, reports, and SOPs from templates — saving hours per week.</p>
       <div class="service-tier tier-build">Build-Out</div>
     </div>
-    <div class="service-card" onclick="toggleService(this, 'retainer')">
+    <div class="service-card">
       <div class="service-icon">🔄</div>
       <h3>Monthly Retainer</h3>
       <p>On-call for maintenance, new automations, staff training, and prompt management.</p>
@@ -510,12 +507,6 @@
 
 
 <script>
-  // ── SERVICES TOGGLE (hero section cards) ──
-  const selectedServices = new Set();
-  function toggleService(el, name) {
-    el.classList.toggle('selected');
-    selectedServices.has(name) ? selectedServices.delete(name) : selectedServices.add(name);
-  }
 
   // ── GOOGLE FORMS SUBMISSION ──
   const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSent0hNGs6XyAIFlEftOxtgEJP8mWMnns-f3S7YZDxWwNzQpQ/formResponse';
