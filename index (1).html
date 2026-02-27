@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cody Care Consulting — Google Workspace and Office 365 Implementation for Small Business</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #111318;
+      --slate:  #1e2535;
+      --mid:    #4a5568;
+      --muted:  #8a93a6;
+      --border: #dde1ea;
+      --cream:  #f7f5f0;
+      --white:  #ffffff;
+      --gold:   #b8933f;
+      --gold-lt:#d4aa5a;
+      --accent: #2a5cde;
+      --accent-lt: #4a7aff;
+      --success:#16a34a;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(17, 19, 24, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--ink) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-lt) !important; color: var(--ink) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--slate);
+      padding: 130px 5% 90px;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex; align-items: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(42,92,222,0.18) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,147,63,0.12) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 760px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(184,147,63,0.15);
+      border: 1px solid rgba(184,147,63,0.3);
+      color: var(--gold-lt);
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem; border-radius: 100px;
+      margin-bottom: 1.75rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold-lt);
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      font-weight: 700; line-height: 1.08;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    h1 em { color: var(--gold-lt); font-style: normal; }
+    .hero-sub {
+      font-size: 1.15rem; font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      max-width: 560px; line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-badges {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .badge {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.75);
+      padding: 0.5rem 1rem; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 500;
+    }
+    .badge-icon { font-size: 1rem; }
+    .hero-cta-row {
+      display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+      margin-top: 2.5rem;
+      animation: fadeUp 0.6s 0.35s ease both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: var(--radius); font-weight: 600;
+      font-size: 0.95rem; cursor: pointer;
+      text-decoration: none; border: none;
+      transition: all 0.2s; font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--ink);
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(184,147,63,0.3); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 90px 5%; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--mid);
+      max-width: 520px; line-height: 1.7;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: var(--cream); }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .step-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .step-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 700;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .step-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .step-card p { font-size: 0.875rem; color: var(--mid); line-height: 1.6; }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-bottom: 3rem;
+    }
+    .service-card {
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .service-card:hover { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(42,92,222,0.06); }
+    .service-card.selected { border-color: var(--accent); background: rgba(42,92,222,0.04); }
+    .service-card.selected::after {
+      content: '✓';
+      position: absolute; top: 1rem; right: 1rem;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--accent); color: white;
+      font-size: 0.75rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .service-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .service-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .service-card p { font-size: 0.85rem; color: var(--mid); line-height: 1.55; }
+    .service-tier {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 4px;
+      margin-top: 0.75rem;
+    }
+    .tier-quick { background: #dcfce7; color: #166534; }
+    .tier-build { background: #dbeafe; color: #1e40af; }
+    .tier-retainer { background: #fef3c7; color: #92400e; }
+
+    /* ── INTAKE FORM ── */
+    .intake { background: var(--white); }
+    .form-wrapper {
+      max-width: 700px;
+    }
+
+    /* progress bar */
+    .progress-bar {
+      display: flex; gap: 0; margin-bottom: 3rem;
+      border-radius: 100px; overflow: hidden;
+      height: 4px; background: var(--border);
+    }
+    .progress-fill {
+      height: 100%; background: var(--accent);
+      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .step-indicators {
+      display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+    }
+    .step-dot {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem; font-weight: 500;
+      color: var(--muted);
+    }
+    .step-dot.active { color: var(--accent); }
+    .step-dot.done { color: var(--success); }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .step-dot.active .dot { background: var(--accent); }
+    .step-dot.done .dot { background: var(--success); }
+
+    /* form steps */
+    .form-step { display: none; }
+    .form-step.active { display: block; animation: fadeUp 0.3s ease; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .form-row.single { grid-template-columns: 1fr; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    label { font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+    label .req { color: var(--gold); margin-left: 2px; }
+
+    input[type=text], input[type=email], input[type=tel],
+    input[type=url], textarea, select {
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem; font-family: inherit;
+      color: var(--ink);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(42,92,222,0.1);
+    }
+    textarea { resize: vertical; min-height: 110px; }
+
+    .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .platform-option {
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .platform-option:hover { border-color: var(--accent); }
+    .platform-option.selected { border-color: var(--accent); background: rgba(42,92,222,0.04); }
+    .platform-option .plat-icon { font-size: 2rem; margin-bottom: 0.4rem; }
+    .platform-option .plat-name { font-size: 0.85rem; font-weight: 600; }
+    .platform-option .plat-sub { font-size: 0.75rem; color: var(--mid); margin-top: 0.2rem; }
+
+    .radio-group { display: flex; flex-direction: column; gap: 0.6rem; }
+    .radio-opt {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px; cursor: pointer;
+      transition: all 0.15s;
+    }
+    .radio-opt:hover { border-color: var(--accent); }
+    .radio-opt input[type=radio] { accent-color: var(--accent); width: 16px; height: 16px; flex-shrink: 0; }
+    .radio-opt span { font-size: 0.875rem; }
+
+    /* file upload */
+    .file-drop {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .file-drop:hover, .file-drop.dragover { border-color: var(--accent); background: rgba(42,92,222,0.03); }
+    .file-drop input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .file-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .file-drop h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .file-drop p { font-size: 0.8rem; color: var(--mid); }
+    .file-list { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .file-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: var(--cream); padding: 0.5rem 0.75rem;
+      border-radius: 6px; font-size: 0.8rem; font-weight: 500;
+    }
+
+    /* form nav */
+    .form-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 2.5rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .btn-form-next {
+      background: var(--accent); color: white;
+      padding: 0.8rem 2rem; border-radius: var(--radius);
+      font-weight: 600; font-size: 0.9rem; cursor: pointer;
+      border: none; font-family: inherit;
+      transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-form-next:hover { background: var(--accent-lt); transform: translateY(-1px); }
+    .btn-form-back {
+      background: transparent; color: var(--mid);
+      padding: 0.8rem 1.5rem; border-radius: var(--radius);
+      font-weight: 500; font-size: 0.9rem; cursor: pointer;
+      border: 1.5px solid var(--border); font-family: inherit;
+      transition: all 0.2s;
+    }
+    .btn-form-back:hover { border-color: var(--mid); color: var(--ink); }
+    .btn-submit {
+      background: var(--gold); color: var(--ink);
+      padding: 0.9rem 2.25rem; border-radius: var(--radius);
+      font-weight: 700; font-size: 0.95rem; cursor: pointer;
+      border: none; font-family: inherit;
+      transition: all 0.2s;
+    }
+    .btn-submit:hover { background: var(--gold-lt); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(184,147,63,0.25); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
+
+    /* ── SUCCESS STATE ── */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 4rem 2rem;
+      animation: fadeUp 0.5s ease;
+    }
+    .success-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: #dcfce7; color: var(--success);
+      font-size: 2rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    .success-state h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem;
+    }
+    .success-state p { color: var(--mid); max-width: 440px; margin: 0 auto; }
+
+    /* ── SCHEDULING ── */
+    .scheduling { background: var(--cream); }
+    .calendly-embed {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--white);
+      min-height: 350px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 3rem;
+      text-align: center;
+    }
+    .calendly-placeholder p { color: var(--mid); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .calendly-placeholder code {
+      background: var(--ink); color: var(--gold-lt);
+      padding: 0.5rem 1rem; border-radius: 6px;
+      font-size: 0.82rem; display: block; margin-top: 0.75rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--slate);
+      padding: 3rem 5%;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--gold); }
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+      .platform-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      h1 { font-size: 2.4rem; }
+      .hero-cta-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav>
+  <div class="nav-logo">Bridge<span>AI</span></div>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#intake">Get Started</a></li>
+    <li><a href="#schedule" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">AI Implementation Partner</div>
+    <h1>Your AI ideas,<br><em>actually built.</em></h1>
+    <p class="hero-sub">
+      We help small businesses on Google Workspace and Microsoft 365 turn their AI concepts into real, working systems — without hiring a developer.
+    </p>
+    <div class="hero-badges">
+      <div class="badge"><span class="badge-icon">🔷</span> Google Workspace</div>
+      <div class="badge"><span class="badge-icon">🟦</span> Microsoft 365</div>
+      <div class="badge"><span class="badge-icon">⚡</span> No-code to full-build</div>
+    </div>
+    <div class="hero-cta-row">
+      <a href="#intake" class="btn btn-primary">→ Start Your Project</a>
+      <a href="#how-it-works" class="btn btn-outline">See how it works</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ HOW IT WORKS ═══════════════════ -->
+<section class="how" id="how-it-works">
+  <div class="section-label">Process</div>
+  <h2>From idea to working system</h2>
+  <p class="section-sub">A straightforward process that respects your time and delivers real results fast.</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <h3>Tell Us What You Need</h3>
+      <p>Fill out our quick intake form. We'll ask the right questions about your business, platform, and goals — no jargon required.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <h3>Discovery Call</h3>
+      <p>We'll jump on a 30-min call to scope your project, clarify expectations, and outline exactly what we'll build.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <h3>We Build It</h3>
+      <p>Our team builds your automation, integration, or AI tool inside your existing platform — no new software required.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <h3>Handoff + Training</h3>
+      <p>You get a working system, full documentation, and a walkthrough so your team can actually use it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SERVICES ═══════════════════ -->
+<section id="services">
+  <div class="section-label">What We Build</div>
+  <h2>Services designed for small teams</h2>
+  <p class="section-sub">Select the services that interest you — we'll cover the details on your discovery call.</p>
+  <div class="services-grid">
+    <div class="service-card" onclick="toggleService(this, 'workflow-automation')">
+      <div class="service-icon">⚙️</div>
+      <h3>Workflow Automation</h3>
+      <p>Automate approval chains, reporting, email routing, and repetitive tasks inside Google Workspace or Microsoft 365.</p>
+      <div class="service-tier tier-quick">Quick Win</div>
+    </div>
+    <div class="service-card" onclick="toggleService(this, 'ai-tools')">
+      <div class="service-icon">🧠</div>
+      <h3>AI-Powered Tools</h3>
+      <p>Custom spreadsheet tools, document generators, and smart templates powered by Gemini or Copilot AI.</p>
+      <div class="service-tier tier-quick">Quick Win</div>
+    </div>
+    <div class="service-card" onclick="toggleService(this, 'chatbot-kb')">
+      <div class="service-icon">💬</div>
+      <h3>Internal Chatbot / Knowledge Base</h3>
+      <p>Build a chatbot trained on your documents, SOPs, and FAQs so your team gets instant answers.</p>
+      <div class="service-tier tier-build">Build-Out</div>
+    </div>
+    <div class="service-card" onclick="toggleService(this, 'crm-integration')">
+      <div class="service-icon">🔗</div>
+      <h3>CRM & App Integrations</h3>
+      <p>Connect your CRM, project management tools, and Google / Microsoft apps so data flows automatically.</p>
+      <div class="service-tier tier-build">Build-Out</div>
+    </div>
+    <div class="service-card" onclick="toggleService(this, 'doc-generation')">
+      <div class="service-icon">📄</div>
+      <h3>AI Document Generation</h3>
+      <p>Auto-generate proposals, contracts, reports, and SOPs from templates — saving hours per week.</p>
+      <div class="service-tier tier-build">Build-Out</div>
+    </div>
+    <div class="service-card" onclick="toggleService(this, 'retainer')">
+      <div class="service-icon">🔄</div>
+      <h3>Monthly AI Retainer</h3>
+      <p>On-call AI partner for ongoing maintenance, new automations, staff training, and prompt management.</p>
+      <div class="service-tier tier-retainer">Ongoing</div>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top:1rem;">
+    <a href="#intake" class="btn btn-primary" style="font-size:1rem;">Tell Us About Your Project →</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ INTAKE FORM ═══════════════════ -->
+<section class="intake" id="intake">
+  <div class="section-label">Book a Free Call</div>
+  <h2>Let's talk — no strings attached</h2>
+  <p class="section-sub">Tell us who you are and we'll reach out to confirm your free 30-minute consultation. Takes under a minute.</p>
+
+  <div class="form-wrapper" id="formWrapper">
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name <span class="req">*</span></label>
+        <input type="text" id="firstName" placeholder="Jane" required />
+      </div>
+      <div class="form-group">
+        <label>Last Name <span class="req">*</span></label>
+        <input type="text" id="lastName" placeholder="Smith" required />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email Address <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="jane@company.com" required />
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="(555) 000-0000" />
+      </div>
+    </div>
+    <div class="form-row single">
+      <div class="form-group">
+        <label>Business Name <span class="req">*</span></label>
+        <input type="text" id="businessName" placeholder="Acme Co." required />
+      </div>
+    </div>
+    <div class="form-row single">
+      <div class="form-group">
+        <label>Anything you'd like us to know before the call? <span style="color:var(--muted); font-weight:400;">(optional)</span></label>
+        <textarea id="extra" placeholder="e.g. We're a small law firm on Google Workspace and we want to automate our client intake process..." style="min-height:110px;"></textarea>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-top:1.75rem;">
+      <p style="font-size:0.78rem; color:var(--muted);">🔒 Your info is private and never shared.</p>
+      <button class="btn-submit" id="btnSubmit" onclick="submitForm()">Book My Free Call →</button>
+    </div>
+  </div>
+
+  <!-- Success state -->
+  <div class="success-state" id="successState">
+    <div class="success-icon">✓</div>
+    <h3>We'll be in touch!</h3>
+    <p>Thanks for reaching out. We'll confirm your consultation within one business day — or skip ahead and pick your time slot directly below.</p>
+    <a href="#schedule" class="btn btn-primary" style="margin-top:2rem; display:inline-flex;">Pick a time on our calendar →</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ SCHEDULING ═══════════════════ -->
+<section class="scheduling" id="schedule">
+  <div class="section-label">Discovery Call</div>
+  <h2>Book a free 30-minute call</h2>
+  <p class="section-sub">No pitch, no pressure — just a focused conversation about what you need and whether we're the right fit.</p>
+
+  <!-- 
+    ─────────────────────────────────────────────
+    REPLACE THIS BLOCK with your Calendly embed:
+
+    1. Go to calendly.com → Sharing → Embed
+    2. Copy the inline embed code
+    3. Replace the <div class="calendly-embed"> below
+    ─────────────────────────────────────────────
+  -->
+  <div class="calendly-embed">
+    <div class="calendly-placeholder">
+      <div style="font-size:2rem; margin-bottom:1rem;">📅</div>
+      <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; margin-bottom:0.75rem;">Your Calendly goes here</h3>
+      <p>Replace this block with your Calendly inline embed code.</p>
+      <code><!-- Paste Calendly embed code here --></code>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <div class="footer-logo">Bridge<span>AI</span></div>
+  <p>© 2025 Cody Care Consulting. All rights reserved.</p>
+  <p style="font-size:0.78rem; color:rgba(255,255,255,0.3);">AI implementation for small business.</p>
+</footer>
+
+
+<script>
+  // ── SERVICES TOGGLE (hero section cards) ──
+  const selectedServices = new Set();
+  function toggleService(el, name) {
+    el.classList.toggle('selected');
+    selectedServices.has(name) ? selectedServices.delete(name) : selectedServices.add(name);
+  }
+
+  // ══════════════════════════════════════════════════════════════════
+  // GOOGLE FORMS SETUP — only 3 steps, ~5 minutes
+  // ══════════════════════════════════════════════════════════════════
+  //
+  // STEP 1 — Create your Google Form at forms.google.com
+  //   Add 5 Short Answer questions:
+  //     First Name | Last Name | Email | Phone | Business Name | Notes
+  //
+  // STEP 2 — Get the POST URL + entry IDs
+  //   • Click ⋮ → "Get pre-filled link"
+  //   • Fill dummy text in all fields → click "Get Link"
+  //   • Copy the URL. Change "viewform" → "formResponse"
+  //   • Paste that URL as GOOGLE_FORM_URL below
+  //   • Each field in the URL looks like: entry.1234567890=dummy
+  //     Copy those numbers into ENTRY_IDS below
+  //
+  // STEP 3 — Connect to Google Sheets
+  //   Form → Responses tab → click the green Sheets icon
+  //   Every submission becomes a new row automatically.
+  //
+  // ══════════════════════════════════════════════════════════════════
+
+  const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSent0hNGs6XyAIFlEftOxtgEJP8mWMnns-f3S7YZDxWwNzQpQ/formResponse';
+
+  const ENTRY_IDS = {
+    firstName:    'entry.955968502',  // ← replace each with your real entry ID
+    lastName:     'entry.1193780520',
+    email:        'entry.286655833',
+    phone:        'entry.655915540',
+    businessName: 'entry.2035854931',
+    notes:        'entry.1630658721',
+  };
+
+  async function submitForm() {
+    const btn = document.getElementById('btnSubmit');
+
+    // Validate required fields
+    const firstName    = document.getElementById('firstName').value.trim();
+    const lastName     = document.getElementById('lastName').value.trim();
+    const email        = document.getElementById('email').value.trim();
+    const businessName = document.getElementById('businessName').value.trim();
+
+    if (!firstName || !lastName || !email || !businessName) {
+      alert('Please fill in your name, email, and business name.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const payload = new URLSearchParams({
+      [ENTRY_IDS.firstName]:    firstName,
+      [ENTRY_IDS.lastName]:     lastName,
+      [ENTRY_IDS.email]:        email,
+      [ENTRY_IDS.phone]:        document.getElementById('phone').value,
+      [ENTRY_IDS.businessName]: businessName,
+      [ENTRY_IDS.notes]:        document.getElementById('extra').value,
+    });
+
+    // Google Forms blocks cross-origin reads — no-cors is required.
+    // The data still lands in your Sheet; we just can't read the response.
+    try {
+      await fetch(GOOGLE_FORM_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload.toString(),
+      });
+    } catch (err) {
+      console.warn('Fetch warning (submission likely succeeded):', err);
+    }
+
+    document.getElementById('formWrapper').style.display = 'none';
+    document.getElementById('successState').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
