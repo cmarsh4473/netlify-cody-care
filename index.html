@@ -252,41 +252,7 @@
 
     /* ── INTAKE FORM ── */
     .intake { background: var(--white); }
-    .form-wrapper {
-      max-width: 700px;
-    }
-
-    /* progress bar */
-    .progress-bar {
-      display: flex; gap: 0; margin-bottom: 3rem;
-      border-radius: 100px; overflow: hidden;
-      height: 4px; background: var(--border);
-    }
-    .progress-fill {
-      height: 100%; background: var(--accent);
-      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-    }
-    .step-indicators {
-      display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;
-    }
-    .step-dot {
-      display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.8rem; font-weight: 500;
-      color: var(--muted);
-    }
-    .step-dot.active { color: var(--accent); }
-    .step-dot.done { color: var(--success); }
-    .dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--border); flex-shrink: 0;
-      transition: background 0.2s;
-    }
-    .step-dot.active .dot { background: var(--accent); }
-    .step-dot.done .dot { background: var(--success); }
-
-    /* form steps */
-    .form-step { display: none; }
-    .form-step.active { display: block; animation: fadeUp 0.3s ease; }
+    .form-wrapper { max-width: 700px; }
 
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
     .form-row.single { grid-template-columns: 1fr; }
@@ -312,78 +278,6 @@
     }
     textarea { resize: vertical; min-height: 110px; }
 
-    .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .platform-option {
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.2s;
-      user-select: none;
-    }
-    .platform-option:hover { border-color: var(--accent); }
-    .platform-option.selected { border-color: var(--accent); background: rgba(42,92,222,0.04); }
-    .platform-option .plat-icon { font-size: 2rem; margin-bottom: 0.4rem; }
-    .platform-option .plat-name { font-size: 0.85rem; font-weight: 600; }
-    .platform-option .plat-sub { font-size: 0.75rem; color: var(--mid); margin-top: 0.2rem; }
-
-    .radio-group { display: flex; flex-direction: column; gap: 0.6rem; }
-    .radio-opt {
-      display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: 8px; cursor: pointer;
-      transition: all 0.15s;
-    }
-    .radio-opt:hover { border-color: var(--accent); }
-    .radio-opt input[type=radio] { accent-color: var(--accent); width: 16px; height: 16px; flex-shrink: 0; }
-    .radio-opt span { font-size: 0.875rem; }
-
-    /* file upload */
-    .file-drop {
-      border: 2px dashed var(--border);
-      border-radius: var(--radius);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      position: relative;
-    }
-    .file-drop:hover, .file-drop.dragover { border-color: var(--accent); background: rgba(42,92,222,0.03); }
-    .file-drop input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-    .file-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-    .file-drop h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .file-drop p { font-size: 0.8rem; color: var(--mid); }
-    .file-list { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.4rem; }
-    .file-item {
-      display: flex; align-items: center; gap: 0.5rem;
-      background: var(--cream); padding: 0.5rem 0.75rem;
-      border-radius: 6px; font-size: 0.8rem; font-weight: 500;
-    }
-
-    /* form nav */
-    .form-nav {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-top: 2.5rem; padding-top: 2rem;
-      border-top: 1px solid var(--border);
-    }
-    .btn-form-next {
-      background: var(--accent); color: white;
-      padding: 0.8rem 2rem; border-radius: var(--radius);
-      font-weight: 600; font-size: 0.9rem; cursor: pointer;
-      border: none; font-family: inherit;
-      transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem;
-    }
-    .btn-form-next:hover { background: var(--accent-lt); transform: translateY(-1px); }
-    .btn-form-back {
-      background: transparent; color: var(--mid);
-      padding: 0.8rem 1.5rem; border-radius: var(--radius);
-      font-weight: 500; font-size: 0.9rem; cursor: pointer;
-      border: 1.5px solid var(--border); font-family: inherit;
-      transition: all 0.2s;
-    }
-    .btn-form-back:hover { border-color: var(--mid); color: var(--ink); }
     .btn-submit {
       background: var(--gold); color: var(--ink);
       padding: 0.9rem 2.25rem; border-radius: var(--radius);
@@ -393,8 +287,6 @@
     }
     .btn-submit:hover { background: var(--gold-lt); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(184,147,63,0.25); }
     .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-    .hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
 
     /* ── SUCCESS STATE ── */
     .success-state {
@@ -415,24 +307,6 @@
       font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem;
     }
     .success-state p { color: var(--mid); max-width: 440px; margin: 0 auto; }
-
-    /* ── SCHEDULING ── */
-    .scheduling { background: var(--cream); }
-    .calendly-embed {
-      border-radius: var(--radius); overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--white);
-      min-height: 350px;
-      display: flex; align-items: center; justify-content: center;
-      padding: 3rem;
-      text-align: center;
-    }
-    .calendly-placeholder p { color: var(--mid); font-size: 0.9rem; margin-bottom: 1.5rem; }
-    .calendly-placeholder code {
-      background: var(--ink); color: var(--gold-lt);
-      padding: 0.5rem 1rem; border-radius: 6px;
-      font-size: 0.82rem; display: block; margin-top: 0.75rem;
-    }
 
     /* ── FOOTER ── */
     footer {
@@ -458,7 +332,6 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .form-row { grid-template-columns: 1fr; }
-      .platform-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       h1 { font-size: 2.4rem; }
       .hero-cta-row { flex-direction: column; align-items: flex-start; }
@@ -469,12 +342,11 @@
 
 <!-- ═══════════════════ NAV ═══════════════════ -->
 <nav>
-  <div class="nav-logo">Bridge<span>AI</span></div>
+  <div class="nav-logo">Cody Care <span>Consulting</span></div>
   <ul class="nav-links">
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#intake">Get Started</a></li>
-    <li><a href="#schedule" class="nav-cta">Book a Call</a></li>
+    <li><a href="#intake" class="nav-cta">Get Started</a></li>
   </ul>
 </nav>
 
@@ -512,8 +384,8 @@
     </div>
     <div class="step-card">
       <div class="step-num">02</div>
-      <h3>Discovery Call</h3>
-      <p>We'll jump on a 30-min call to scope your project, clarify expectations, and outline exactly what we'll build.</p>
+      <h3>We'll Reach Out</h3>
+      <p>Once we receive your info, we'll follow up within one business day to introduce ourselves and discuss next steps.</p>
     </div>
     <div class="step-card">
       <div class="step-num">03</div>
@@ -532,7 +404,7 @@
 <section id="services">
   <div class="section-label">What We Build</div>
   <h2>Services designed for small teams</h2>
-  <p class="section-sub">Select the services that interest you — we'll cover the details on your discovery call.</p>
+  <p class="section-sub">Select the services that interest you — we'll cover the details when we connect.</p>
   <div class="services-grid">
     <div class="service-card" onclick="toggleService(this, 'workflow-automation')">
       <div class="service-icon">⚙️</div>
@@ -578,9 +450,9 @@
 
 <!-- ═══════════════════ INTAKE FORM ═══════════════════ -->
 <section class="intake" id="intake">
-  <div class="section-label">Book a Free Call</div>
+  <div class="section-label">Get In Touch</div>
   <h2>Let's talk — no strings attached</h2>
-  <p class="section-sub">Tell us who you are and we'll reach out to confirm your free 30-minute consultation. Takes under a minute.</p>
+  <p class="section-sub">Tell us who you are and we'll be in touch within one business day. Takes under a minute.</p>
 
   <div class="form-wrapper" id="formWrapper">
     <div class="form-row">
@@ -611,13 +483,13 @@
     </div>
     <div class="form-row single">
       <div class="form-group">
-        <label>Anything you'd like us to know before the call? <span style="color:var(--muted); font-weight:400;">(optional)</span></label>
+        <label>Anything you'd like us to know? <span style="color:var(--muted); font-weight:400;">(optional)</span></label>
         <textarea id="extra" placeholder="e.g. We're a small law firm on Google Workspace and we want to automate our client intake process..." style="min-height:110px;"></textarea>
       </div>
     </div>
     <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-top:1.75rem;">
       <p style="font-size:0.78rem; color:var(--muted);">🔒 Your info is private and never shared.</p>
-      <button class="btn-submit" id="btnSubmit" onclick="submitForm()">Book My Free Call →</button>
+      <button class="btn-submit" id="btnSubmit" onclick="submitForm()">Send My Info →</button>
     </div>
   </div>
 
@@ -625,39 +497,13 @@
   <div class="success-state" id="successState">
     <div class="success-icon">✓</div>
     <h3>We'll be in touch!</h3>
-    <p>Thanks for reaching out. We'll confirm your consultation within one business day — or skip ahead and pick your time slot directly below.</p>
-    <a href="#schedule" class="btn btn-primary" style="margin-top:2rem; display:inline-flex;">Pick a time on our calendar →</a>
-  </div>
-</section>
-
-<!-- ═══════════════════ SCHEDULING ═══════════════════ -->
-<section class="scheduling" id="schedule">
-  <div class="section-label">Discovery Call</div>
-  <h2>Book a free 30-minute call</h2>
-  <p class="section-sub">No pitch, no pressure — just a focused conversation about what you need and whether we're the right fit.</p>
-
-  <!-- 
-    ─────────────────────────────────────────────
-    REPLACE THIS BLOCK with your Calendly embed:
-
-    1. Go to calendly.com → Sharing → Embed
-    2. Copy the inline embed code
-    3. Replace the <div class="calendly-embed"> below
-    ─────────────────────────────────────────────
-  -->
-  <div class="calendly-embed">
-    <div class="calendly-placeholder">
-      <div style="font-size:2rem; margin-bottom:1rem;">📅</div>
-      <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; margin-bottom:0.75rem;">Your Calendly goes here</h3>
-      <p>Replace this block with your Calendly inline embed code.</p>
-      <code><!-- Paste Calendly embed code here --></code>
-    </div>
+    <p>Thanks for reaching out. We'll follow up within one business day to introduce ourselves and talk through how we can help.</p>
   </div>
 </section>
 
 <!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer>
-  <div class="footer-logo">Bridge<span>AI</span></div>
+  <div class="footer-logo">Cody Care <span>Consulting</span></div>
   <p>© 2025 Cody Care Consulting. All rights reserved.</p>
   <p style="font-size:0.78rem; color:rgba(255,255,255,0.3);">AI implementation for small business.</p>
 </footer>
@@ -671,32 +517,11 @@
     selectedServices.has(name) ? selectedServices.delete(name) : selectedServices.add(name);
   }
 
-  // ══════════════════════════════════════════════════════════════════
-  // GOOGLE FORMS SETUP — only 3 steps, ~5 minutes
-  // ══════════════════════════════════════════════════════════════════
-  //
-  // STEP 1 — Create your Google Form at forms.google.com
-  //   Add 5 Short Answer questions:
-  //     First Name | Last Name | Email | Phone | Business Name | Notes
-  //
-  // STEP 2 — Get the POST URL + entry IDs
-  //   • Click ⋮ → "Get pre-filled link"
-  //   • Fill dummy text in all fields → click "Get Link"
-  //   • Copy the URL. Change "viewform" → "formResponse"
-  //   • Paste that URL as GOOGLE_FORM_URL below
-  //   • Each field in the URL looks like: entry.1234567890=dummy
-  //     Copy those numbers into ENTRY_IDS below
-  //
-  // STEP 3 — Connect to Google Sheets
-  //   Form → Responses tab → click the green Sheets icon
-  //   Every submission becomes a new row automatically.
-  //
-  // ══════════════════════════════════════════════════════════════════
-
+  // ── GOOGLE FORMS SUBMISSION ──
   const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSent0hNGs6XyAIFlEftOxtgEJP8mWMnns-f3S7YZDxWwNzQpQ/formResponse';
 
   const ENTRY_IDS = {
-    firstName:    'entry.955968502',  // ← replace each with your real entry ID
+    firstName:    'entry.955968502',
     lastName:     'entry.1193780520',
     email:        'entry.286655833',
     phone:        'entry.655915540',
@@ -707,7 +532,6 @@
   async function submitForm() {
     const btn = document.getElementById('btnSubmit');
 
-    // Validate required fields
     const firstName    = document.getElementById('firstName').value.trim();
     const lastName     = document.getElementById('lastName').value.trim();
     const email        = document.getElementById('email').value.trim();
@@ -734,8 +558,6 @@
       [ENTRY_IDS.notes]:        document.getElementById('extra').value,
     });
 
-    // Google Forms blocks cross-origin reads — no-cors is required.
-    // The data still lands in your Sheet; we just can't read the response.
     try {
       await fetch(GOOGLE_FORM_URL, {
         method: 'POST',
